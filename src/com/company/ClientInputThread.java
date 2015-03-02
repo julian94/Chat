@@ -10,6 +10,7 @@ public class ClientInputThread extends Thread {
     Scanner scanner;
     Chat chat;
     String username;
+    String[] cipher;
 
     public ClientInputThread(Scanner scanner, Chat chat) {
         this.scanner = scanner;
@@ -31,6 +32,12 @@ public class ClientInputThread extends Thread {
         this.chat = chat;
         this.username = username += ": ";
     }
+    public ClientInputThread(Chat chat, Scanner scanner, String username, String[] cipher) {
+        this.scanner = scanner;
+        this.chat = chat;
+        this.username = username += ": ";
+        this.cipher = cipher;
+    }
     public void run() {
         String input;
         while (true) {
@@ -38,7 +45,12 @@ public class ClientInputThread extends Thread {
             if (!input.equals("")){
                 if (input.equals("exit")) System.exit(0);
                 try {
-                    chat.sendMessage(username + input);
+                    int nr = chat.messageCount();
+                    if (cipher == null){
+                        chat.sendMessage(username + input);
+                    } else {
+                        chat.sendMessage(username + OTPGen.encrypt(input,cipher[nr]));
+                    }
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

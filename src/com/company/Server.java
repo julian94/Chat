@@ -13,6 +13,8 @@ public class Server {
         String navn = "Chat";
         LocateRegistry.createRegistry(1099);
         Naming.rebind(navn,chat);
+        String filename = "Ciphertest2.txt";
+        System.out.println(OTPGen.makeCleanFile("TestCipher",30, 64));
         String input = "";
         Scanner leserFraKommandovindu = new Scanner(System.in);
         System.out.println("Server is running, press return to close...");

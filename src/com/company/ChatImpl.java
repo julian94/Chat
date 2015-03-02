@@ -14,12 +14,18 @@ public class ChatImpl extends UnicastRemoteObject implements Chat, Serializable 
     protected ChatImpl() throws RemoteException {
     }
 
-    public synchronized void sendMessage(String message) {
+    public synchronized boolean sendMessage(String message) {
         messages.add(message);
+        System.out.println(message);
+        return true;
     }
 
     public synchronized boolean checkNew(int latestMessage){
         return latestMessage < (messages.size());
+    }
+
+    public synchronized int messageCount() {
+        return messages.size();
     }
 
     public synchronized ArrayList<String> getNew(int latestMessage) {
