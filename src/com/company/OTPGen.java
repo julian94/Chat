@@ -9,7 +9,9 @@ import java.util.Random;
  * Created by Julian on 23.02.2015.
  */
 public class OTPGen {
-    static char[] c = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9',' '};
+    static char[] c = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X',
+            'Y','Z','0','1','2','3','4','5','6','7','8','9',' ','a','b','c','d','e','f','g','h','i','j','k','l','m','m',
+            'n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
     public static char[] genOTP(int length){
         char[] result = new char[length];

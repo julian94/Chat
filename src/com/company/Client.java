@@ -50,10 +50,10 @@ public class Client {
             for (String message : messages) {
                 if (!message.startsWith(username)) {
                     String[] split = message.split(": ");
-                    System.out.println(message);
+                    //System.out.println(message);
                     System.out.println(split[0] + ": " + OTPGen.decrypt(split[1],cipher[latestMessage]));
-                    latestMessage++;
                 }
+                latestMessage++;
             }
         }
     }

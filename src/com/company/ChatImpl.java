@@ -16,7 +16,6 @@ public class ChatImpl extends UnicastRemoteObject implements Chat, Serializable 
 
     public synchronized boolean sendMessage(String message) {
         messages.add(message);
-        System.out.println(message);
         return true;
     }
 
