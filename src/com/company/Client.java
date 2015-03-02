@@ -8,13 +8,17 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
         String url = "rmi://localhost/Chat";
-        Chat chat = (Chat) Naming.lookup(url);
         int latestMessage = 0;
 
         String input = "";
         Scanner leserFraKommandovindu = new Scanner(System.in);
-        System.out.println("Welcome to my chat program./nPlease insert a username.");
+        System.out.println("Welcome to my chat program.");
+        System.out.println("Please insert a username.");
         String username = leserFraKommandovindu.nextLine();
+        System.out.println("What is the hostname?");
+        url = "rmi://" + leserFraKommandovindu.nextLine() + "/chat";
+        Chat chat = (Chat) Naming.lookup(url);
+
         ClientInputThread cit = new ClientInputThread(chat, leserFraKommandovindu);
         cit.start();
         while (true) {
