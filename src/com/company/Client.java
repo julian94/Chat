@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client {
+    static String username;
 
     public static void main(String[] args) throws Exception {
         String url = "rmi://localhost/Chat";
@@ -14,13 +15,13 @@ public class Client {
         Scanner leserFraKommandovindu = new Scanner(System.in);
         System.out.println("Welcome to my chat program.");
         System.out.println("Please insert a username.");
-        String username = leserFraKommandovindu.nextLine();
+        username = leserFraKommandovindu.nextLine();
         System.out.println("What is the hostname?");
         url = "rmi://" + leserFraKommandovindu.nextLine() + "/Chat";
         System.out.println(url);
         Chat chat = (Chat) Naming.lookup(url);
 
-        ClientInputThread cit = new ClientInputThread(chat, leserFraKommandovindu);
+        ClientInputThread cit = new ClientInputThread(chat, leserFraKommandovindu, username);
         cit.start();
         while (true) {
             Thread.sleep(500);
@@ -35,7 +36,7 @@ public class Client {
     private static void printMessages(ArrayList<String> messages) {
         if (messages != null) {
             for (String message : messages) {
-                System.out.println(message);
+                if (!message.startsWith(username)) System.out.println(message);
             }
         }
     }

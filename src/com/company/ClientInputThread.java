@@ -9,13 +9,27 @@ import java.util.Scanner;
 public class ClientInputThread extends Thread {
     Scanner scanner;
     Chat chat;
+    String username;
+
     public ClientInputThread(Scanner scanner, Chat chat) {
         this.scanner = scanner;
         this.chat = chat;
+        this.username = "";
     }
     public ClientInputThread(Chat chat, Scanner scanner) {
         this.scanner = scanner;
         this.chat = chat;
+        this.username = "";
+    }
+    public ClientInputThread(Scanner scanner, Chat chat, String username) {
+        this.scanner = scanner;
+        this.chat = chat;
+        this.username = username += ": ";
+    }
+    public ClientInputThread(Chat chat, Scanner scanner, String username) {
+        this.scanner = scanner;
+        this.chat = chat;
+        this.username = username += ": ";
     }
     public void run() {
         String input;
@@ -24,7 +38,7 @@ public class ClientInputThread extends Thread {
             if (!input.equals("")){
                 if (input.equals("exit")) System.exit(0);
                 try {
-                    chat.sendMessage(input);
+                    chat.sendMessage(username + input);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
