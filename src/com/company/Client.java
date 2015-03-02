@@ -16,7 +16,8 @@ public class Client {
         System.out.println("Please insert a username.");
         String username = leserFraKommandovindu.nextLine();
         System.out.println("What is the hostname?");
-        url = "rmi://" + leserFraKommandovindu.nextLine() + "/chat";
+        url = "rmi://" + leserFraKommandovindu.nextLine() + "/Chat";
+        System.out.println(url);
         Chat chat = (Chat) Naming.lookup(url);
 
         ClientInputThread cit = new ClientInputThread(chat, leserFraKommandovindu);
